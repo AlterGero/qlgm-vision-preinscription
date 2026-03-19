@@ -3,23 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QLGM Vision | Preinscription</title>
+    <title>QLGM Vision | Analyse video pour staffs et analysts</title>
     <meta
       name="description"
-      content="QLGM Vision prepare une nouvelle experience d'analyse video sportive. Preinscrivez-vous pour demander un acces anticipe."
+      content="QLGM Vision aide les staffs a tagger, dessiner, organiser et presenter leurs analyses video dans un seul environnement."
     />
     <style>
       :root {
         --bg: #0f1110;
-        --bg-soft: #171a17;
+        --bg-2: #141713;
         --card: rgba(43, 46, 40, 0.25);
-        --card-strong: rgba(43, 46, 40, 0.45);
+        --card-soft: rgba(43, 46, 40, 0.16);
         --text: #e1e4dc;
         --muted: #b0b5a9;
         --line: rgba(225, 228, 220, 0.1);
-        --line-strong: rgba(225, 228, 220, 0.16);
+        --line-soft: rgba(225, 228, 220, 0.05);
         --accent: #bb86fc;
-        --accent-shadow: rgba(187, 134, 252, 0.2);
+        --accent-2: #8bd6c1;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
 
       * {
@@ -32,13 +33,12 @@
 
       body {
         margin: 0;
-        min-height: 100vh;
-        font-family: "Segoe UI", system-ui, sans-serif;
         color: var(--text);
+        font-family: "Segoe UI", system-ui, sans-serif;
         background:
-          radial-gradient(circle at top left, rgba(187, 134, 252, 0.16), transparent 28%),
-          radial-gradient(circle at 85% 20%, rgba(106, 148, 255, 0.12), transparent 24%),
-          linear-gradient(180deg, #111310 0%, #0f1110 55%, #0b0d0c 100%);
+          radial-gradient(circle at top left, rgba(187, 134, 252, 0.14), transparent 26%),
+          radial-gradient(circle at 85% 12%, rgba(139, 214, 193, 0.1), transparent 22%),
+          linear-gradient(180deg, #111310 0%, #0f1110 48%, #0b0d0c 100%);
       }
 
       a {
@@ -49,7 +49,7 @@
       .page {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 24px 32px 56px;
+        padding: 24px 32px 64px;
       }
 
       .header {
@@ -76,30 +76,26 @@
         height: 12px;
         border-radius: 999px;
         background: var(--accent);
-        box-shadow: 0 0 16px rgba(187, 134, 252, 0.55);
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 420px);
-        gap: 28px;
-        padding-top: 40px;
-        align-items: stretch;
+        box-shadow: 0 0 16px rgba(187, 134, 252, 0.5);
       }
 
       .glass-card {
         background: var(--card);
-        background-image: linear-gradient(
-          145deg,
-          rgba(255, 255, 255, 0.05) 0%,
-          rgba(255, 255, 255, 0.01) 100%
-        );
+        background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid var(--line);
         border-radius: 14px;
         padding: 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 420px);
+        gap: 24px;
+        padding-top: 36px;
+        align-items: stretch;
       }
 
       .eyebrow {
@@ -111,23 +107,23 @@
         background: rgba(0, 0, 0, 0.2);
         border: 1px solid var(--line);
         color: var(--muted);
-        font-size: 0.8rem;
-        letter-spacing: 0.04em;
+        font-size: 0.78rem;
         text-transform: uppercase;
+        letter-spacing: 0.08em;
       }
 
       h1 {
         margin: 18px 0 16px;
-        font-size: clamp(2.4rem, 5vw, 4.6rem);
-        line-height: 0.96;
-        letter-spacing: -0.05em;
+        font-size: clamp(2.7rem, 5.2vw, 5rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
       }
 
-      .hero-copy p {
+      .lead {
         margin: 0;
-        max-width: 60ch;
+        max-width: 62ch;
         color: var(--muted);
-        font-size: 1.05rem;
+        font-size: 1.06rem;
         line-height: 1.7;
       }
 
@@ -147,16 +143,13 @@
         align-items: center;
         justify-content: center;
         font-weight: 700;
-        transition:
-          transform 180ms ease,
-          border-color 180ms ease,
-          background 180ms ease;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
       }
 
       .button-primary {
         background: var(--accent);
         color: #121212;
-        box-shadow: 0 4px 16px var(--accent-shadow);
+        box-shadow: 0 4px 16px rgba(187, 134, 252, 0.2);
       }
 
       .button-secondary {
@@ -168,69 +161,75 @@
       .button-primary:hover,
       .button-secondary:hover,
       .feature:hover,
+      .step:hover,
+      .metric:hover,
       .contact-item:hover {
         transform: translateY(-1px);
       }
 
-      .side-panel {
+      .hero-panel {
         display: flex;
         flex-direction: column;
-        gap: 18px;
+        gap: 16px;
       }
 
-      .contact-panel {
-        background: var(--card-strong);
+      .stack {
+        display: grid;
+        gap: 14px;
       }
 
-      .contact-panel h2,
-      .section h2 {
-        margin: 0 0 12px;
-        font-size: 1.15rem;
-        letter-spacing: -0.03em;
-      }
-
-      .contact-panel p {
-        margin: 0 0 18px;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .contact-item {
-        display: block;
+      .metric {
         padding: 16px 20px;
-        background: rgba(43, 46, 40, 0.15);
-        border: 1px solid rgba(225, 228, 220, 0.05);
         border-radius: 12px;
-        transition:
-          border-color 180ms ease,
-          background 180ms ease,
-          transform 180ms ease;
+        border: 1px solid var(--line-soft);
+        background: var(--card-soft);
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
       }
 
-      .contact-item:hover,
-      .feature:hover {
+      .metric:hover,
+      .feature:hover,
+      .step:hover,
+      .contact-item:hover {
         border-color: rgba(187, 134, 252, 0.3);
         background: rgba(43, 46, 40, 0.35);
       }
 
-      .contact-label {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 0.8rem;
+      .metric-label {
         color: var(--muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
       }
 
-      .contact-value {
-        display: block;
-        font-size: 1rem;
+      .metric-value {
+        margin-top: 8px;
+        font-size: 1.08rem;
         font-weight: 700;
-        word-break: break-word;
       }
 
       .section {
         margin-top: 24px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        letter-spacing: -0.04em;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 62ch;
+        line-height: 1.6;
       }
 
       .feature-grid {
@@ -240,26 +239,95 @@
       }
 
       .feature {
-        padding: 16px 20px;
-        background: rgba(43, 46, 40, 0.15);
-        border: 1px solid rgba(225, 228, 220, 0.05);
+        padding: 20px;
+        background: var(--card-soft);
+        border: 1px solid var(--line-soft);
         border-radius: 12px;
-        transition:
-          border-color 180ms ease,
-          background 180ms ease,
-          transform 180ms ease;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
       }
 
-      .feature-title {
-        margin: 0 0 8px;
-        font-size: 1rem;
-        font-weight: 700;
+      .feature-kicker {
+        color: var(--accent);
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .feature h3 {
+        margin: 10px 0 10px;
+        font-size: 1.04rem;
       }
 
       .feature p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.6;
+        line-height: 1.65;
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .step {
+        padding: 20px;
+        background: var(--card-soft);
+        border: 1px solid var(--line-soft);
+        border-radius: 12px;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .step-number {
+        width: 34px;
+        height: 34px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 10px;
+        background: rgba(187, 134, 252, 0.16);
+        color: var(--accent);
+        font-weight: 800;
+      }
+
+      .step h3 {
+        margin: 14px 0 10px;
+      }
+
+      .step p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 16px;
+      }
+
+      .contact-item {
+        display: block;
+        padding: 16px 20px;
+        background: var(--card-soft);
+        border: 1px solid var(--line-soft);
+        border-radius: 12px;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .contact-label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .contact-value {
+        display: block;
+        font-size: 1rem;
+        font-weight: 700;
+        word-break: break-word;
       }
 
       .footer {
@@ -270,28 +338,24 @@
         font-size: 0.95rem;
       }
 
-      @media (max-width: 920px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-
-        .feature-grid {
+      @media (max-width: 980px) {
+        .hero,
+        .contact-grid,
+        .feature-grid,
+        .workflow {
           grid-template-columns: 1fr;
         }
       }
 
       @media (max-width: 640px) {
         .page {
-          padding: 20px 18px 36px;
+          padding: 20px 18px 40px;
         }
 
-        .header {
-          align-items: flex-start;
+        .header,
+        .section-head {
           flex-direction: column;
-        }
-
-        h1 {
-          font-size: clamp(2rem, 12vw, 3.2rem);
+          align-items: flex-start;
         }
 
         .cta-row {
@@ -301,6 +365,10 @@
         .button-primary,
         .button-secondary {
           width: 100%;
+        }
+
+        h1 {
+          font-size: clamp(2.15rem, 12vw, 3.4rem);
         }
       }
     </style>
@@ -312,77 +380,174 @@
           <span class="brand-dot" aria-hidden="true"></span>
           <span>QLGM Vision</span>
         </div>
-        <a class="button-secondary" href="mailto:contact@glgmvision.eu?subject=Preinscription%20QLGM%20Vision">
-          Se preinscrire
-        </a>
+        <a class="button-secondary" href="#contact">Demander un acces</a>
       </header>
 
       <section class="hero">
-        <div class="hero-copy glass-card">
-          <span class="eyebrow">Analyse video sportive</span>
-          <h1>La plateforme qui aide les staffs a aller plus vite, plus clair, plus loin.</h1>
-          <p>
-            QLGM Vision centralise l'analyse, l'organisation des sequences et la preparation
-            des presentations pour gagner du temps et mieux partager les insights utiles.
+        <div class="glass-card">
+          <span class="eyebrow">Plateforme d'analyse video</span>
+          <h1>Tagger, dessiner, organiser et presenter dans un seul outil.</h1>
+          <p class="lead">
+            QLGM Vision aide les analysts et les staffs a transformer la video en sequences
+            exploitables, clips clairs et presentations pretes pour le terrain comme pour la reunion.
           </p>
           <div class="cta-row">
             <a
               class="button-primary"
-              href="mailto:contact@glgmvision.eu?subject=Preinscription%20QLGM%20Vision&body=Bonjour%2C%0A%0AJe%20souhaite%20me%20preinscrire%20a%20QLGM%20Vision.%0A%0ANom%20%3A%0AOrganisation%20%3A%0ARole%20%3A%0A%0AMerci."
+              href="mailto:contact@glgmvision.eu?subject=Preinscription%20QLGM%20Vision&body=Bonjour%2C%0A%0AJe%20souhaite%20me%20preinscrire%20a%20QLGM%20Vision.%0A%0ANom%20%3A%0AClub%20ou%20organisation%20%3A%0ARole%20%3A%0ABesoin%20principal%20%3A%0A%0AMerci."
             >
-              Je veux un acces anticipe
+              Se preinscrire par email
             </a>
-            <a class="button-secondary" href="#contact">Ecrire a l'equipe</a>
+            <a class="button-secondary" href="#features">Voir les fonctionnalites</a>
           </div>
         </div>
 
-        <aside class="side-panel">
-          <div class="glass-card contact-panel" id="contact">
-            <h2>Preinscription en 1 clic</h2>
-            <p>
-              Le call to action principal est simple : envoyez-nous un email et nous vous
-              recontacterons pour les prochaines ouvertures.
-            </p>
-            <a
-              class="contact-item"
-              href="mailto:contact@glgmvision.eu?subject=Preinscription%20QLGM%20Vision"
-            >
-              <span class="contact-label">Email de contact</span>
-              <span class="contact-value">contact@glgmvision.eu</span>
-            </a>
-          </div>
-
-          <div class="glass-card">
-            <h2>Pour qui</h2>
-            <p>
-              Pour les analystes, staffs et structures sportives qui veulent fluidifier la
-              creation, la lecture et le partage de contenus video.
-            </p>
+        <aside class="hero-panel">
+          <div class="glass-card stack">
+            <div class="metric">
+              <div class="metric-label">Tagging video</div>
+              <div class="metric-value">Capturez les moments cles et structurez vos analyses.</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Dessins terrain</div>
+              <div class="metric-value">Illustrez les courses, zones, circuits de passe et principes de jeu.</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Presentations</div>
+              <div class="metric-value">Passez plus vite de l'analyse brute au support clair pour l'equipe.</div>
+            </div>
           </div>
         </aside>
       </section>
 
-      <section class="section glass-card">
-        <h2>Pourquoi rejoindre la liste d'attente</h2>
+      <section class="section glass-card" id="features">
+        <div class="section-head">
+          <div>
+            <h2>Les fonctionnalites cles</h2>
+          </div>
+          <p>
+            Une page produit doit montrer l'outil. Voici les blocs que QLGM Vision met au centre
+            de l'experience utilisateur.
+          </p>
+        </div>
         <div class="feature-grid">
           <article class="feature">
-            <h3 class="feature-title">Analyse plus nette</h3>
-            <p>Structurez vos sequences et vos lectures de match dans un environnement plus clair.</p>
+            <div class="feature-kicker">01. Tagging</div>
+            <h3>Tagging rapide et organise</h3>
+            <p>
+              Creez des tags, classes d'evenements et reperes de lecture pour retrouver
+              instantanement les actions importantes dans la video.
+            </p>
           </article>
           <article class="feature">
-            <h3 class="feature-title">Presentation plus rapide</h3>
-            <p>Transformez plus facilement vos observations en supports utiles pour vos equipes.</p>
+            <div class="feature-kicker">02. Dessins</div>
+            <h3>Dessins et annotations tactiques</h3>
+            <p>
+              Ajoutez fleches, zones et indications visuelles pour rendre chaque sequence plus
+              lisible pour le staff et les joueurs.
+            </p>
           </article>
           <article class="feature">
-            <h3 class="feature-title">Acces anticipe</h3>
-            <p>Passez par email pour etre contacte en priorite quand les prochaines places ouvrent.</p>
+            <div class="feature-kicker">03. Workspace</div>
+            <h3>Espace de travail centralise</h3>
+            <p>
+              Gardez video, timeline, etiquettes, descripteurs et docks dans un meme environnement
+              de travail.
+            </p>
+          </article>
+          <article class="feature">
+            <div class="feature-kicker">04. Templates</div>
+            <h3>Templates de tags et descripteurs</h3>
+            <p>
+              Standardisez la collecte d'information avec des modeles adaptes a votre methode
+              d'analyse.
+            </p>
+          </article>
+          <article class="feature">
+            <div class="feature-kicker">05. Presentation</div>
+            <h3>Preparation de presentations</h3>
+            <p>
+              Transformez vos clips et vos observations en supports plus propres pour les debriefs,
+              les previews et les reunions staff.
+            </p>
+          </article>
+          <article class="feature">
+            <div class="feature-kicker">06. Gestion terrain</div>
+            <h3>Visuels terrain et calibration</h3>
+            <p>
+              Reutilisez des surfaces de terrain adaptees a vos besoins pour enrichir les analyses
+              et les explications tactiques.
+            </p>
           </article>
         </div>
       </section>
 
+      <section class="section glass-card">
+        <div class="section-head">
+          <div>
+            <h2>Comment l'outil s'utilise</h2>
+          </div>
+          <p>
+            Le flux est pense pour aller de la lecture video a la communication finale sans casser
+            le rythme de travail.
+          </p>
+        </div>
+        <div class="workflow">
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>Chargez l'analyse</h3>
+            <p>
+              Ouvrez votre session, votre match ou votre sequence de travail et retrouvez
+              immediatement vos reperes.
+            </p>
+          </article>
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>Taggez et dessinez</h3>
+            <p>
+              Capturez les temps forts, ajoutez des etiquettes et completez avec des visuels
+              tactiques pour faire ressortir l'essentiel.
+            </p>
+          </article>
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>Partagez plus clairement</h3>
+            <p>
+              Reprenez vos clips et observations pour produire des presentations plus lisibles et
+              plus utiles pour la prise de decision.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section glass-card" id="contact">
+        <div class="section-head">
+          <div>
+            <h2>Preinscription</h2>
+          </div>
+          <p>
+            Si vous voulez tester QLGM Vision ou etre contacte quand les acces ouvrent, le plus
+            simple est de nous envoyer un email.
+          </p>
+        </div>
+        <div class="contact-grid">
+          <a
+            class="contact-item"
+            href="mailto:contact@glgmvision.eu?subject=Preinscription%20QLGM%20Vision&body=Bonjour%2C%0A%0AJe%20souhaite%20etre%20contacte%20pour%20QLGM%20Vision.%0A%0ANom%20%3A%0AClub%20ou%20organisation%20%3A%0ARole%20%3A%0AUsage%20souhaite%20%3A%0A%0AMerci."
+          >
+            <span class="contact-label">Email direct</span>
+            <span class="contact-value">contact@glgmvision.eu</span>
+          </a>
+          <div class="contact-item">
+            <span class="contact-label">Call to action</span>
+            <span class="contact-value">Envoyez un email et nous revenons vers vous pour la suite.</span>
+          </div>
+        </div>
+      </section>
+
       <p class="footer">
-        QLGM Vision. Preinscription et demandes d'information :
-        <a href="mailto:contact@glgmvision.eu">contact@glgmvision.eu</a>
+        QLGM Vision centralise le tagging, les dessins tactiques, les templates et la preparation
+        de presentations dans une experience plus claire pour les staffs.
       </p>
     </main>
   </body>
