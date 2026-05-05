@@ -3,552 +3,268 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QLGM Vision | Analyse video pour staffs et analysts</title>
+    <title>QLGM Vision | Analyse vid&eacute;o football</title>
     <meta
       name="description"
-      content="QLGM Vision aide les staffs a tagger, dessiner, organiser et presenter leurs analyses video dans un seul environnement."
+      content="QLGM Vision aide les coachs, analystes video et clubs a analyser leurs matchs plus vite avec un abonnement simple a 15 euros par mois au lancement."
     />
-    <style>
-      :root {
-        --bg: #0f1110;
-        --bg-2: #141713;
-        --card: rgba(43, 46, 40, 0.25);
-        --card-soft: rgba(43, 46, 40, 0.16);
-        --text: #e1e4dc;
-        --muted: #b0b5a9;
-        --line: rgba(225, 228, 220, 0.1);
-        --line-soft: rgba(225, 228, 220, 0.05);
-        --accent: #bb86fc;
-        --accent-2: #8bd6c1;
-        --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        color: var(--text);
-        font-family: "Segoe UI", system-ui, sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(187, 134, 252, 0.14), transparent 26%),
-          radial-gradient(circle at 85% 12%, rgba(139, 214, 193, 0.1), transparent 22%),
-          linear-gradient(180deg, #111310 0%, #0f1110 48%, #0b0d0c 100%);
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .page {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 24px 32px 64px;
-      }
-
-      .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 0.95rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
-
-      .brand-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 999px;
-        background: var(--accent);
-        box-shadow: 0 0 16px rgba(187, 134, 252, 0.5);
-      }
-
-      .glass-card {
-        background: var(--card);
-        background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 20px;
-        box-shadow: var(--shadow);
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 420px);
-        gap: 24px;
-        padding-top: 36px;
-        align-items: stretch;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 14px;
-        border-radius: 999px;
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-
-      h1 {
-        margin: 18px 0 16px;
-        font-size: clamp(2.7rem, 5.2vw, 5rem);
-        line-height: 0.95;
-        letter-spacing: -0.06em;
-      }
-
-      .lead {
-        margin: 0;
-        max-width: 62ch;
-        color: var(--muted);
-        font-size: 1.06rem;
-        line-height: 1.7;
-      }
-
-      .cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 28px;
-      }
-
-      .button-primary,
-      .button-secondary {
-        min-height: 48px;
-        border-radius: 10px;
-        padding: 12px 18px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .button-primary {
-        background: var(--accent);
-        color: #121212;
-        box-shadow: 0 4px 16px rgba(187, 134, 252, 0.2);
-      }
-
-      .button-secondary {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid var(--line);
-        color: var(--text);
-      }
-
-      .button-primary:hover,
-      .button-secondary:hover,
-      .feature:hover,
-      .step:hover,
-      .metric:hover,
-      .contact-item:hover {
-        transform: translateY(-1px);
-      }
-
-      .hero-panel {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .stack {
-        display: grid;
-        gap: 14px;
-      }
-
-      .metric {
-        padding: 16px 20px;
-        border-radius: 12px;
-        border: 1px solid var(--line-soft);
-        background: var(--card-soft);
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .metric:hover,
-      .feature:hover,
-      .step:hover,
-      .contact-item:hover {
-        border-color: rgba(187, 134, 252, 0.3);
-        background: rgba(43, 46, 40, 0.35);
-      }
-
-      .metric-label {
-        color: var(--muted);
-        font-size: 0.78rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .metric-value {
-        margin-top: 8px;
-        font-size: 1.08rem;
-        font-weight: 700;
-      }
-
-      .section {
-        margin-top: 24px;
-      }
-
-      .section-head {
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 16px;
-      }
-
-      .section-head h2 {
-        margin: 0;
-        font-size: 1.5rem;
-        letter-spacing: -0.04em;
-      }
-
-      .section-head p {
-        margin: 0;
-        color: var(--muted);
-        max-width: 62ch;
-        line-height: 1.6;
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .feature {
-        padding: 20px;
-        background: var(--card-soft);
-        border: 1px solid var(--line-soft);
-        border-radius: 12px;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .feature-kicker {
-        color: var(--accent);
-        font-size: 0.76rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-
-      .feature h3 {
-        margin: 10px 0 10px;
-        font-size: 1.04rem;
-      }
-
-      .feature p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .workflow {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .step {
-        padding: 20px;
-        background: var(--card-soft);
-        border: 1px solid var(--line-soft);
-        border-radius: 12px;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .step-number {
-        width: 34px;
-        height: 34px;
-        display: inline-grid;
-        place-items: center;
-        border-radius: 10px;
-        background: rgba(187, 134, 252, 0.16);
-        color: var(--accent);
-        font-weight: 800;
-      }
-
-      .step h3 {
-        margin: 14px 0 10px;
-      }
-
-      .step p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 16px;
-      }
-
-      .contact-item {
-        display: block;
-        padding: 16px 20px;
-        background: var(--card-soft);
-        border: 1px solid var(--line-soft);
-        border-radius: 12px;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      }
-
-      .contact-label {
-        display: block;
-        margin-bottom: 6px;
-        color: var(--muted);
-        font-size: 0.8rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .contact-value {
-        display: block;
-        font-size: 1rem;
-        font-weight: 700;
-        word-break: break-word;
-      }
-
-      .footer {
-        margin-top: 28px;
-        padding-top: 16px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      @media (max-width: 980px) {
-        .hero,
-        .contact-grid,
-        .feature-grid,
-        .workflow {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .page {
-          padding: 20px 18px 40px;
-        }
-
-        .header,
-        .section-head {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .cta-row {
-          flex-direction: column;
-        }
-
-        .button-primary,
-        .button-secondary {
-          width: 100%;
-        }
-
-        h1 {
-          font-size: clamp(2.15rem, 12vw, 3.4rem);
-        }
-      }
-    </style>
+    <meta property="og:title" content="QLGM Vision | Analysez vos matchs plus vite" />
+    <meta
+      property="og:description"
+      content="Une offre simple pour structurer vos videos, annotations et briefings football. 15 euros par mois au lancement, puis 24,99 euros."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="page">
-      <header class="header">
-        <div class="brand">
-          <span class="brand-dot" aria-hidden="true"></span>
-          <span>QLGM Vision</span>
-        </div>
-        <a class="button-secondary" href="#contact">Demander un acces</a>
-      </header>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="QLGM Vision accueil">
+        <img src="./assets/qlgm-logo-white.png" alt="QLGM Vision" />
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#features">Fonctionnalit&eacute;s</a>
+        <a href="#pricing">Prix</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="header-cta" href="#pricing" data-checkout-link>S'abonner</a>
+    </header>
 
+    <main id="top">
       <section class="hero">
-        <div class="glass-card">
-          <span class="eyebrow">Plateforme d'analyse video</span>
-          <h1>Tagger, dessiner, organiser et presenter dans un seul outil.</h1>
+        <div class="hero-copy">
+          <p class="eyebrow">Analyse vid&eacute;o football pour coachs et analystes</p>
+          <h1>Analysez vos matchs plus vite. D&eacute;cidez plus juste.</h1>
           <p class="lead">
-            QLGM Vision aide les analysts et les staffs a transformer la video en sequences
-            exploitables, clips clairs et presentations pretes pour le terrain comme pour la reunion.
+            QLGM Vision centralise vos vid&eacute;os, annotations, tags et supports de briefing pour
+            transformer un match brut en d&eacute;cisions terrain exploitables.
           </p>
-          <div class="cta-row">
-            <a
-              class="button-primary"
-              href="mailto:contact@glgmvision.eu?subject=Preinscription%20QLGM%20Vision&body=Bonjour%2C%0A%0AJe%20souhaite%20me%20preinscrire%20a%20QLGM%20Vision.%0A%0ANom%20%3A%0AClub%20ou%20organisation%20%3A%0ARole%20%3A%0ABesoin%20principal%20%3A%0A%0AMerci."
-            >
-              Se preinscrire par email
+
+          <div class="hero-actions" aria-label="Actions principales">
+            <a class="primary-button" href="#pricing" data-checkout-link>
+              Commencer &agrave; 15 &euro;/mois
             </a>
-            <a class="button-secondary" href="#features">Voir les fonctionnalites</a>
+            <a class="secondary-button" href="#features">Voir les fonctionnalit&eacute;s</a>
           </div>
+
+          <p class="checkout-note">
+            Paiement s&eacute;curis&eacute; via Lemon Squeezy. Sans engagement. Annulable &agrave; tout moment.
+          </p>
         </div>
 
-        <aside class="hero-panel">
-          <div class="glass-card stack">
-            <div class="metric">
-              <div class="metric-label">Tagging video</div>
-              <div class="metric-value">Capturez les moments cles et structurez vos analyses.</div>
-            </div>
-            <div class="metric">
-              <div class="metric-label">Dessins terrain</div>
-              <div class="metric-value">Illustrez les courses, zones, circuits de passe et principes de jeu.</div>
-            </div>
-            <div class="metric">
-              <div class="metric-label">Presentations</div>
-              <div class="metric-value">Passez plus vite de l'analyse brute au support clair pour l'equipe.</div>
-            </div>
+        <aside class="launch-offer" aria-label="Offre de lancement">
+          <span class="offer-badge">Offre lancement</span>
+          <div class="price-line">
+            <span class="price">15 &euro;</span>
+            <span class="period">/ mois</span>
           </div>
+          <p>Puis 24,99 &euro;/mois apr&egrave;s 6 mois. Une seule formule, toutes les fonctions cl&eacute;s.</p>
+          <a class="primary-button full-width" href="#pricing" data-checkout-link>
+            Profiter du tarif lancement
+          </a>
+          <ul class="offer-list" aria-label="Inclus">
+            <li>Tagging video et organisation des actions</li>
+            <li>Annotations tactiques et supports de briefing</li>
+            <li>Mises a jour incluses pendant l'abonnement</li>
+          </ul>
         </aside>
       </section>
 
-      <section class="section glass-card" id="features">
-        <div class="section-head">
-          <div>
-            <h2>Les fonctionnalites cles</h2>
+      <section class="product-strip" aria-label="Apercu produit">
+        <div class="product-window">
+          <div class="window-bar">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
+          <div class="analysis-preview">
+            <div class="video-pane">
+              <div class="pitch">
+                <span class="player player-a"></span>
+                <span class="player player-b"></span>
+                <span class="player player-c"></span>
+                <span class="run-line"></span>
+                <span class="zone"></span>
+              </div>
+            </div>
+            <div class="insight-pane">
+              <strong>Sequences cles</strong>
+              <span>Pressing haut</span>
+              <span>Transition offensive</span>
+              <span>Sortie de balle</span>
+            </div>
+          </div>
+        </div>
+        <div class="strip-copy">
+          <h2>Votre analyse devient plus claire, plus vite.</h2>
           <p>
-            Une page produit doit montrer l'outil. Voici les blocs que QLGM Vision met au centre
-            de l'experience utilisateur.
+            Moins de temps perdu &agrave; chercher les clips. Plus de temps pour comprendre, expliquer et
+            pr&eacute;parer la suite.
           </p>
         </div>
-        <div class="feature-grid">
-          <article class="feature">
-            <div class="feature-kicker">01. Tagging</div>
-            <h3>Tagging rapide et organise</h3>
-            <p>
-              Creez des tags, classes d'evenements et reperes de lecture pour retrouver
-              instantanement les actions importantes dans la video.
-            </p>
+      </section>
+
+      <section class="section problem-section">
+        <div>
+          <p class="section-kicker">Le probleme</p>
+          <h2>Vos vid&eacute;os contiennent d&eacute;j&agrave; les r&eacute;ponses. Le temps manque pour les exploiter.</h2>
+        </div>
+        <div class="problem-grid">
+          <article>
+            <strong>Trier</strong>
+            <p>Retrouvez les actions importantes sans repartir de z&eacute;ro &agrave; chaque session.</p>
           </article>
-          <article class="feature">
-            <div class="feature-kicker">02. Dessins</div>
-            <h3>Dessins et annotations tactiques</h3>
-            <p>
-              Ajoutez fleches, zones et indications visuelles pour rendre chaque sequence plus
-              lisible pour le staff et les joueurs.
-            </p>
+          <article>
+            <strong>Expliquer</strong>
+            <p>Rendez les comportements visibles avec des annotations et des rep&egrave;res clairs.</p>
           </article>
-          <article class="feature">
-            <div class="feature-kicker">03. Workspace</div>
-            <h3>Espace de travail centralise</h3>
-            <p>
-              Gardez video, timeline, etiquettes, descripteurs et docks dans un meme environnement
-              de travail.
-            </p>
-          </article>
-          <article class="feature">
-            <div class="feature-kicker">04. Templates</div>
-            <h3>Templates de tags et descripteurs</h3>
-            <p>
-              Standardisez la collecte d'information avec des modeles adaptes a votre methode
-              d'analyse.
-            </p>
-          </article>
-          <article class="feature">
-            <div class="feature-kicker">05. Presentation</div>
-            <h3>Preparation de presentations</h3>
-            <p>
-              Transformez vos clips et vos observations en supports plus propres pour les debriefs,
-              les previews et les reunions staff.
-            </p>
-          </article>
-          <article class="feature">
-            <div class="feature-kicker">06. Gestion terrain</div>
-            <h3>Visuels terrain et calibration</h3>
-            <p>
-              Reutilisez des surfaces de terrain adaptees a vos besoins pour enrichir les analyses
-              et les explications tactiques.
-            </p>
+          <article>
+            <strong>Partager</strong>
+            <p>Pr&eacute;parez vos retours staff, joueurs ou direction avec un support mieux structur&eacute;.</p>
           </article>
         </div>
       </section>
 
-      <section class="section glass-card">
-        <div class="section-head">
-          <div>
-            <h2>Comment l'outil s'utilise</h2>
-          </div>
+      <section class="section" id="features">
+        <div class="section-heading">
+          <p class="section-kicker">Fonctionnalit&eacute;s</p>
+          <h2>Un tableau simple pour voir ce que vous achetez.</h2>
           <p>
-            Le flux est pense pour aller de la lecture video a la communication finale sans casser
-            le rythme de travail.
+            L'objectif est direct: acc&eacute;l&eacute;rer le passage de la vid&eacute;o brute &agrave; l'analyse utile.
           </p>
         </div>
-        <div class="workflow">
-          <article class="step">
-            <div class="step-number">1</div>
-            <h3>Chargez l'analyse</h3>
-            <p>
-              Ouvrez votre session, votre match ou votre sequence de travail et retrouvez
-              immediatement vos reperes.
-            </p>
+
+        <div class="feature-table-wrap">
+          <table class="feature-table">
+            <thead>
+              <tr>
+                <th>Inclus avec QLGM Vision</th>
+                <th>Impact terrain</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Import et lecture vid&eacute;o</td>
+                <td>Centralisez vos matchs, s&eacute;quences et sessions de travail.</td>
+              </tr>
+              <tr>
+                <td>Tags et &eacute;v&eacute;nements</td>
+                <td>Marquez les actions importantes et retrouvez-les rapidement.</td>
+              </tr>
+              <tr>
+                <td>Annotations tactiques</td>
+                <td>Expliquez courses, espaces, circuits et intentions de jeu.</td>
+              </tr>
+              <tr>
+                <td>Templates d'analyse</td>
+                <td>Standardisez votre methode entre matchs, equipes ou analystes.</td>
+              </tr>
+              <tr>
+                <td>Organisation par projet</td>
+                <td>Gardez videos, clips, notes et observations dans un flux coherent.</td>
+              </tr>
+              <tr>
+                <td>Pr&eacute;paration de briefings</td>
+                <td>Transformez vos observations en supports plus clairs pour le staff.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section audience-section">
+        <div class="section-heading">
+          <p class="section-kicker">Pour qui</p>
+          <h2>Con&ccedil;u pour les d&eacute;cisions football, pas pour collectionner des boutons.</h2>
+        </div>
+        <div class="audience-grid">
+          <article>
+            <h3>Coach principal</h3>
+            <p>Pr&eacute;parez vos choix tactiques avec des s&eacute;quences plus lisibles.</p>
           </article>
-          <article class="step">
-            <div class="step-number">2</div>
-            <h3>Taggez et dessinez</h3>
-            <p>
-              Capturez les temps forts, ajoutez des etiquettes et completez avec des visuels
-              tactiques pour faire ressortir l'essentiel.
-            </p>
+          <article>
+            <h3>Analyste vid&eacute;o</h3>
+            <p>Gagnez du temps dans le tri, l'annotation et la restitution.</p>
           </article>
-          <article class="step">
-            <div class="step-number">3</div>
-            <h3>Partagez plus clairement</h3>
-            <p>
-              Reprenez vos clips et observations pour produire des presentations plus lisibles et
-              plus utiles pour la prise de decision.
-            </p>
+          <article>
+            <h3>Club ou academie</h3>
+            <p>Structurez une m&eacute;thode commune sur plusieurs &eacute;quipes.</p>
+          </article>
+          <article>
+            <h3>Structure ind&eacute;pendante</h3>
+            <p>Livrez des retours plus professionnels &agrave; vos joueurs ou clients.</p>
           </article>
         </div>
       </section>
 
-      <section class="section glass-card" id="contact">
-        <div class="section-head">
-          <div>
-            <h2>Preinscription</h2>
-          </div>
+      <section class="section pricing-section" id="pricing">
+        <div class="pricing-copy">
+          <p class="section-kicker">Prix unique</p>
+          <h2>Une formule. Un prix de lancement. Aucun labyrinthe tarifaire.</h2>
           <p>
-            Si vous voulez tester QLGM Vision ou etre contacte quand les acces ouvrent, le plus
-            simple est de nous envoyer un email.
+            Le tarif lancement permet de d&eacute;marrer &agrave; 15 &euro;/mois pendant 6 mois. Ensuite,
+            l'abonnement passe au tarif standard de 24,99 &euro;/mois.
           </p>
         </div>
-        <div class="contact-grid">
-          <a
-            class="contact-item"
-            href="mailto:contact@glgmvision.eu?subject=Preinscription%20QLGM%20Vision&body=Bonjour%2C%0A%0AJe%20souhaite%20etre%20contacte%20pour%20QLGM%20Vision.%0A%0ANom%20%3A%0AClub%20ou%20organisation%20%3A%0ARole%20%3A%0AUsage%20souhaite%20%3A%0A%0AMerci."
-          >
-            <span class="contact-label">Email direct</span>
-            <span class="contact-value">contact@glgmvision.eu</span>
+        <article class="pricing-card">
+          <span class="offer-badge">Tarif lancement</span>
+          <h3>QLGM Vision</h3>
+          <div class="price-line">
+            <span class="price">15 &euro;</span>
+            <span class="period">/ mois</span>
+          </div>
+          <p class="standard-price">Puis 24,99 &euro;/mois apr&egrave;s 6 mois.</p>
+          <a class="primary-button full-width" href="#pricing" data-checkout-link>
+            S'abonner via Lemon Squeezy
           </a>
-          <div class="contact-item">
-            <span class="contact-label">Call to action</span>
-            <span class="contact-value">Envoyez un email et nous revenons vers vous pour la suite.</span>
-          </div>
+          <ul class="pricing-list">
+            <li>Toutes les fonctionnalit&eacute;s principales</li>
+            <li>Abonnement mensuel sans engagement</li>
+            <li>Paiement, TVA et factures via Lemon Squeezy</li>
+            <li>Mises &agrave; jour incluses</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="section-heading">
+          <p class="section-kicker">FAQ</p>
+          <h2>Les questions qui bloquent souvent l'achat.</h2>
+        </div>
+        <div class="faq-grid">
+          <article>
+            <h3>Est-ce que je dois m'engager ?</h3>
+            <p>Non. L'abonnement est mensuel et annulable.</p>
+          </article>
+          <article>
+            <h3>Le paiement est-il s&eacute;curis&eacute; ?</h3>
+            <p>Oui. Le paiement, la TVA, les factures et l'abonnement passent par Lemon Squeezy.</p>
+          </article>
+          <article>
+            <h3>Pourquoi payer maintenant ?</h3>
+            <p>Le tarif lancement vous permet de commencer &agrave; 15 &euro;/mois avant le tarif standard.</p>
+          </article>
+          <article>
+            <h3>A qui s'adresse QLGM Vision ?</h3>
+            <p>Aux coachs, analystes vid&eacute;o, clubs, acad&eacute;mies et structures football.</p>
+          </article>
         </div>
       </section>
 
-      <p class="footer">
-        QLGM Vision centralise le tagging, les dessins tactiques, les templates et la preparation
-        de presentations dans une experience plus claire pour les staffs.
-      </p>
+      <section class="final-cta">
+        <p class="section-kicker">Pr&ecirc;t &agrave; gagner du temps ?</p>
+        <h2>Passez moins de temps &agrave; chercher vos s&eacute;quences. Plus de temps &agrave; pr&eacute;parer vos d&eacute;cisions.</h2>
+        <a class="primary-button" href="#pricing" data-checkout-link>
+          Commencer avec l'offre lancement
+        </a>
+        <p class="checkout-note">15 &euro;/mois au lancement, puis 24,99 &euro;/mois apr&egrave;s 6 mois.</p>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <span>QLGM Vision</span>
+      <a href="mailto:contact@qlgmvision.eu">contact@qlgmvision.eu</a>
+    </footer>
+
+    <script src="./checkout.js"></script>
   </body>
 </html>
