@@ -28,5 +28,5 @@ Open `index.html` in a browser and check:
 
 - the primary CTA is visible without scrolling on desktop and mobile;
 - every pricing CTA opens Lemon Squeezy once the variant ID is configured;
-- the launch price is `15 EUR/mois` and the standard price is `24,99 EUR/mois apres 6 mois`;
+- the launch price is `15 EUR/mois` for the first signups, and the annual price is `150 EUR/an`;
 - the feature table remains readable on mobile.
